@@ -589,41 +589,32 @@ async function deleteCandidate(candidateId) {
     const result = await session.run(
       `
       MATCH (c:Candidate {id: $candidateId})
-
-      WITH c, count(c) AS found
-
-      OPTIONAL MATCH (c)-[r]-()
-
-      DELETE r, c
-
-      RETURN found
+      WITH c
+      DETACH DELETE c
+      RETURN count(*) AS deleted
       `,
       {
-        candidateId
+        candidateId,
       }
     );
 
-    if (result.records.length === 0) {
-      throw new Error("Candidate not found");
-    }
+    const deleted = result.records[0]
+      .get("deleted")
+      .toNumber();
 
-    const found =
-      result.records[0]
-        .get("found")
-        .toNumber();
-
-    if (found === 0) {
+    if (deleted === 0) {
       throw new Error("Candidate not found");
     }
 
     return {
       id: candidateId,
-      deleted: true
+      deleted: true,
     };
   } finally {
     await session.close();
   }
 }
+   
 
 // ======================================================
 // CREATE SKILL
