@@ -1,127 +1,42 @@
 # JobGraph — Job & Skill Relationship Explorer
 
-A graph-powered web application built for the WEXA AI CognoDB take-home assignment.
+A graph-powered web application built for the **WEXA AI CognoDB Take-Home Assignment**.
 
-JobGraph helps users explore relationships between candidates, skills, jobs, and companies using a graph database.
+JobGraph helps users explore relationships between candidates, skills, jobs, and companies using **CognoDB**, a managed graph database compatible with the Neo4j driver and openCypher.
 
-##  Live Demo
+---
 
-Frontend:
-YOUR_VERCEL_URL
+## Live Demo
 
-Backend API:
+### Frontend — Vercel
+
+**Vercel URL:**  
+`YOUR_VERCEL_URL`
+
+### Backend API — Render
+
 https://wexa-graph-database.onrender.com
 
-##  GitHub Repository
+### GitHub Repository
 
 https://github.com/shababa531-maker/Wexa_graph_database
 
 ---
 
-# Use Case
+# Project Overview
 
-JobGraph is a job and candidate relationship explorer.
+JobGraph is a **Job & Skill Relationship Explorer** designed to demonstrate how graph databases can be used to model and query highly connected recruitment data.
 
-Traditional job-search applications often store candidates, jobs, companies, and skills in separate relational tables. However, real recruitment data is highly interconnected.
+The application connects:
 
-For example:
+- Candidates
+- Skills
+- Jobs
+- Companies
 
-Candidate → HAS_SKILL → Skill  
-Skill → REQUIRED_BY → Job  
-Job → POSTED_BY → Company
-
-JobGraph models these connections directly using a graph database.
-
-The application allows users to:
-
-- Explore candidates
-- Explore jobs
-- View candidate skills
-- View job requirements
-- Find suitable jobs for candidates
-- Find candidates suitable for jobs
-- Explore relationships between candidates, skills, jobs, and companies
-- Add and delete candidates
-- Create candidates, skills, companies, and jobs
-
----
-
-# 🧠 Why a Graph Database?
-
-A graph database is a natural fit because the core questions in this application are relationship-based.
+Instead of treating these entities as isolated records, JobGraph represents their relationships directly in a graph.
 
 For example:
-
-> "Which jobs match this candidate based on their skills?"
-
-This requires traversing:
-
-Candidate → Skill → Job
-
-Another example:
-
-> "Which candidates are suitable for a job?"
-
-This requires:
-
-Job → Skill ← Candidate
-
-With a relational database, these relationships would require multiple tables and JOIN operations.
-
-With CognoDB, these relationships can be represented directly as nodes and relationships.
-
-### Advantages
-
-- Natural representation of interconnected data
-- Multi-hop relationship traversal
-- Easier relationship-based queries
-- Flexible graph structure
-- Efficient exploration of connected entities
-- Suitable for recommendation and matching use cases
-
----
-
-# 🏗️ Technology Stack
-
-## Frontend
-
-- React
-- Vite
-- JavaScript
-- Axios
-- CSS
-
-## Backend
-
-- Node.js
-- Express.js
-- Neo4j Driver
-- REST API
-
-## Database
-
-- CognoDB
-- openCypher
-- Bolt protocol
-
-## Deployment
-
-- Vercel — Frontend
-- Render — Backend
-- CognoDB Cloud — Database
-
----
-
-#Graph Data Model
-
-The main entities are:
-
-- Candidate
-- Skill
-- Job
-- Company
-
-Relationships include:
 
 ```text
 Candidate
